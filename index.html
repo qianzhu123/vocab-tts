@@ -50,20 +50,18 @@
 <h2>📖 我的单词本 <span id="status" class="status">未连接</span</h2>
 <div class="meta">电脑编辑 → 自动同步到 GitHub → 手机打开同一网址查看/朗读</div>
 
-<!-- 配置面板（首次打开显示） -->
+<!-- 配置面板 -->
 <div id="configPanel" class="config-panel" style="display:none">
   <strong>⚙️ 首次配置：</strong> 需要 GitHub Personal Access Token 才能写入仓库。
   <ol style="margin:6px 0;padding-left:24px">
     <li>访问 <a href="https://github.com/settings/tokens/new?description=vocab-tts&scopes=repo" target="_blank">这里创建 Token</a>（<code>repo</code> 权限必勾）</li>
     <li>把 Token 粘到下面，保存（仅存浏览器本地，不上传）</li>
-
-</ol>
+ </ol>
   <div class="row">
     <input id="cfgToken" type="password" placeholder="ghp_xxxxxxxxxxxx" style="flex:1;min-width:240px">
     <input id="cfgRepo" placeholder="用户名/仓库名（如 qianzhu123/vocab-tts）" style="flex:1;min-width:200px">
     <button id="cfgSave" class="success">💾 保存配置</button>
-
-</div>
+ </div>
 </div>
 
 <!-- 新增表单 -->
@@ -72,23 +70,19 @@
     <input id="inWord" placeholder="单词（必填，如 abandon）" style="flex:1;min-width:140px">
     <input id="inMeaning" placeholder="中文意思（如 放弃）" style="flex:2;min-width:180px">
     <button id="addBtn">➕ 添加</button>
-
-</div>
+ </div>
   <div class="row">
     <input id="inPhon" placeholder="音标（可选 /əˈbændən/）" style="width:200px">
     <input id="inExample" placeholder="例句（可选）" style="flex:1;min-width:200px">
-
-</div>
+ </div>
 </div>
 
 <!-- 控制栏 -->
 <div class="row">
-  <label>语音：<select id="voice"
-</select
-</label>
+  <label>语音：<select id="voice</select</label>
   <label>语速：<input type="range" id="rate" min="0.5" max="1.2" step="0.05" value="0.85" style="width:120px">
-    <span id="rateV">0.85</span
-</label>
+    <span id="rateV">0.85</span>
+ </label>
   <button id="playAll">▶ 全部朗读</button>
   <button id="loopMode" class="sec">🔁 循环模式：关</button>
   <button id="stop" class="sec">⏹ 停止</button>
@@ -97,17 +91,16 @@
 </div>
 
 <!-- 单词列表 -->
-<div id="list" class="list"><div class="empty">加载中…</div
-</div>
+<div id="list" class="list"><div class="empty">加载中…</div</div>
 
 <script>
 // ================= 配置 =================
 const CFG_KEY = 'vocab_tts_cfg_v1';
 let cfg = JSON.parse(localStorage.getItem(CFG_KEY) || '{}');
 let list = [];
-let sha = null;  // GitHub file sha (更新需要)
+let sha = null;
 let loopMode = false;
-let dirty = false;  // 有未同步改动
+let dirty = false;
 
 const $ = id => document.getElementById(id);
 
@@ -160,13 +153,11 @@ async function loadFromCloud() {
     setStatus(`已同步（${list.length} 词）`, 'ok');
   } catch(e) {
     if (String(e.message).includes('404')) {
-      // 文件不存在,初始化
       list = []; sha = null;
       saveLocal(); render();
       setStatus('云端为空,可开始添加', 'ok');
     } else {
       setStatus('加载失败: ' + e.message, 'err');
-      // 回退本地
       list = JSON.parse(localStorage.getItem('vocab_tts_data_v1') || '[]');
       render();
     }
@@ -190,7 +181,7 @@ async function saveToCloud() {
     sha = res.content.sha;
     saveLocal();
     dirty = false;
-    setStatus(`已同步（${list.length} 词）`, 'ok');
+    setStatus(`已同步（${list.length} 词）`, 'ok`);
     return true;
   } catch(e) {
     setStatus('同步失败: ' + e.message, 'err');
@@ -203,7 +194,6 @@ function saveLocal() {
   localStorage.setItem('vocab_tts_data_v1', JSON.stringify(list));
 }
 
-// 防抖:连续编辑只触发一次同步
 let syncTimer = null;
 function scheduleSync() {
   dirty = true;
@@ -232,10 +222,8 @@ function render() {
         <button class="loop" title="循环3次">🔁</button>
         <button class="edit sec" title="编辑">✎</button>
         <button class="del danger" title="删除">✕</button>
-
-</div>
-
-</div>
+     </div>
+   </div>
   `).join('');
   bindList();
 }
@@ -335,7 +323,7 @@ $('playAll').onclick = async () => {
   for (let i=0;i<list.length;i++) {
     await speak(list[i]);
     if (!loopMode) await new Promise(r => setTimeout(r, 1200));
-    else { if (i === list.length - 1) i = -1; }  // 循环模式
+    else { if (i === list.length - 1) i = -1; }
   }
 };
 
@@ -379,7 +367,6 @@ $('cfgSave').onclick = saveCfg;
   }
 })();
 
-// 离开页面前提示
 window.addEventListener('beforeunload', e => {
   if (dirty) { e.preventDefault(); e.returnValue = '有未同步改动'; }
 });
