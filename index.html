@@ -1,375 +1,739 @@
 <!DOCTYPE html>
+
 <html lang="zh-CN">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>单词本 · 多设备同步朗读</title>
+
 <style>
+
   *{box-sizing:border-box}
+
   body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;max-width:880px;margin:0 auto;padding:12px 16px;color:#222;background:#fafbfc}
+
   h2{margin:8px 0 4px}
+
   .meta{font-size:12px;color:#888;margin-bottom:12px}
+
   .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+
   input,select,button{padding:8px 12px;font-size:14px;border:1px solid #ccc;border-radius:6px;font-family:inherit}
+
   input:focus,select:focus{outline:2px solid #4a90e2;border-color:#4a90e2}
+
   button{cursor:pointer;background:#4a90e2;color:#fff;border:none;font-weight:500}
+
   button:hover:not(:disabled){background:#357abd}
+
   button:disabled{opacity:.5;cursor:not-allowed}
+
   button.sec{background:#6c757d}
+
   button.danger{background:#d9534f}
+
   button.success{background:#28a745}
+
   .form{background:#f0f7ff;border:1px solid #4a90e2;border-radius:8px;padding:12px;margin:12px 0}
+
   .form .row{margin:6px 0}
+
   .list{border:1px solid #ddd;border-radius:8px;max-height:520px;overflow-y:auto;background:#fff}
+
   .item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid #f0f0f0;flex-wrap:wrap}
+
   .item:last-child{border-bottom:none}
+
   .item:hover{background:#f7f9fc}
+
   .item .w{font-weight:600;min-width:140px;font-size:15px}
+
   .item .m{flex:1;color:#555;min-width:180px}
-  .item .phon{color:#888;font-size:12px;font-family:monospace}
+
   .item .ex{color:#888;font-size:12px;width:100%;padding-left:6px;border-left:2px solid #eee;margin-top:4px}
+
   .item .act{display:flex;gap:4px;margin-left:auto}
+
   .item .act button{padding:4px 10px;font-size:13px}
+
   .empty{color:#999;text-align:center;padding:32px}
+
   .toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 20px;border-radius:6px;z-index:1000;font-size:14px;box-shadow:0 4px 12px rgba(0,0,0,.2);opacity:0;transition:opacity .3s}
+
   .toast.show{opacity:1}
+
   .toast.err{background:#d9534f}
+
   .toast.ok{background:#28a745}
+
   .status{font-size:12px;padding:4px 10px;border-radius:12px;background:#e0e0e0;color:#666}
+
   .status.ok{background:#d4edda;color:#155724}
+
   .status.err{background:#f8d7da;color:#721c24}
+
   .config-panel{background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:12px;margin:12px 0;font-size:13px}
+
   .config-panel code{background:#fff;padding:2px 6px;border-radius:3px;font-size:12px}
-  details{margin:8px 0}
-  summary{cursor:pointer;font-weight:500;color:#4a90e2}
+
   @media(max-width:600px){.item{flex-direction:column;align-items:flex-start}.item .act{margin-left:0}}
+
 </style>
+
 </head>
+
 <body>
 
-<h2>📖 我的单词本 <span id="status" class="status">未连接</span</h2>
+
+
+<h2>📖 我的单词本 <span id="status" class="status">未连接</span></h2>
+
 <div class="meta">电脑编辑 → 自动同步到 GitHub → 手机打开同一网址查看/朗读</div>
 
-<!-- 配置面板 -->
+
+
 <div id="configPanel" class="config-panel" style="display:none">
-  <strong>⚙️ 首次配置：</strong> 需要 GitHub Personal Access Token 才能写入仓库。
+
+  <strong>⚙️ 首次配置</strong> 需要 GitHub Personal Access Token 才能写入仓库。
+
   <ol style="margin:6px 0;padding-left:24px">
-    <li>访问 <a href="https://github.com/settings/tokens/new?description=vocab-tts&scopes=repo" target="_blank">这里创建 Token</a>（<code>repo</code> 权限必勾）</li>
-    <li>把 Token 粘到下面，保存（仅存浏览器本地，不上传）</li>
+
+    <li>访问 <a href="https://github.com/settings/tokens/new?description=vocab-tts&scopes=repo" target="_blank">这里创建 Token</a> (<code>repo</code> 权限必勾</li>
+
+    <li>把 Token 粘到下面,保存(仅存浏览器本地,不上传</li>
+
  </ol>
+
   <div class="row">
+
     <input id="cfgToken" type="password" placeholder="ghp_xxxxxxxxxxxx" style="flex:1;min-width:240px">
-    <input id="cfgRepo" placeholder="用户名/仓库名（如 qianzhu123/vocab-tts）" style="flex:1;min-width:200px">
+
+    <input id="cfgRepo" placeholder="用户名/仓库名,如 qianzhu123/vocab-tts" style="flex:1;min-width:200px">
+
     <button id="cfgSave" class="success">💾 保存配置</button>
+
  </div>
+
 </div>
 
-<!-- 新增表单 -->
+
+
 <div class="form">
+
   <div class="row">
-    <input id="inWord" placeholder="单词（必填，如 abandon）" style="flex:1;min-width:140px">
-    <input id="inMeaning" placeholder="中文意思（如 放弃）" style="flex:2;min-width:180px">
+
+    <input id="inWord" placeholder="单词 (必填),如 abandon" style="flex:1;min-width:140px">
+
+    <input id="inMeaning" placeholder="中文意思,如 放弃" style="flex:2;min-width:180px">
+
     <button id="addBtn">➕ 添加</button>
+
  </div>
+
   <div class="row">
-    <input id="inPhon" placeholder="音标（可选 /əˈbændən/）" style="width:200px">
-    <input id="inExample" placeholder="例句（可选）" style="flex:1;min-width:200px">
+
+    <input id="inExample" placeholder="例句 (可选)" style="flex:1;min-width:200px">
+
  </div>
+
 </div>
 
-<!-- 控制栏 -->
+
+
 <div class="row">
-  <label>语音：<select id="voice</select</label>
-  <label>语速：<input type="range" id="rate" min="0.5" max="1.2" step="0.05" value="0.85" style="width:120px">
-    <span id="rateV">0.85</span>
- </label>
+
+  <label>语音: <select id="voice"></select></label>
+
+  <label>语速: <input type="range" id="rate" min="0.5" max="1.2" step="0.05" value="0.85" style="width:120px">
+
+    <span id="rateV">0.85</span></label>
+
   <button id="playAll">▶ 全部朗读</button>
-  <button id="loopMode" class="sec">🔁 循环模式：关</button>
+
+  <button id="loopMode" class="sec">🔁 循环模式:关</button>
+
   <button id="stop" class="sec">⏹ 停止</button>
+
   <button id="refresh" class="sec">🔄 从云端拉取</button>
+
   <button id="showConfig" class="sec">⚙️ 配置</button>
+
 </div>
 
-<!-- 单词列表 -->
-<div id="list" class="list"><div class="empty">加载中…</div</div>
+
+
+<div id="list" class="list"><div class="empty">加载中…</div></div>
+
+
 
 <script>
+
 // ================= 配置 =================
+
 const CFG_KEY = 'vocab_tts_cfg_v1';
+
 let cfg = JSON.parse(localStorage.getItem(CFG_KEY) || '{}');
+
 let list = [];
+
 let sha = null;
+
 let loopMode = false;
+
 let dirty = false;
+
+
 
 const $ = id => document.getElementById(id);
 
-function showToast(msg, type='') {
+
+
+function showToast(msg, type) {
+
   const t = document.createElement('div');
-  t.className = 'toast ' + type;
+
+  t.className = 'toast ' + (type || '');
+
   t.textContent = msg;
+
   document.body.appendChild(t);
+
   requestAnimationFrame(() => t.classList.add('show'));
+
   setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 2200);
+
 }
 
-function setStatus(text, cls='') {
+
+
+function setStatus(text, cls) {
+
   const el = $('status');
+
   el.textContent = text;
-  el.className = 'status ' + cls;
+
+  el.className = 'status ' + (cls || '');
+
 }
+
+
 
 // ================= GitHub API =================
-async function gh(path, method='GET', body=null) {
+
+async function gh(path, method, body) {
+
+  method = method || 'GET';
+
   if (!cfg.token || !cfg.repo) throw new Error('未配置 Token 或仓库');
-  const url = `https://api.github.com/repos/${cfg.repo}${path}`;
+
+  const url = 'https://api.github.com/repos/' + cfg.repo + path;
+
   const headers = {
-    'Authorization': `token ${cfg.token}`,
+
+    'Authorization': 'token ' + cfg.token,
+
     'Accept': 'application/vnd.github.v3+json'
+
   };
+
   if (body) headers['Content-Type'] = 'application/json';
+
   const r = await fetch(url, {method, headers, body: body ? JSON.stringify(body) : null});
+
   if (!r.ok) {
+
     const err = await r.json().catch(() => ({}));
-    throw new Error(err.message || `HTTP ${r.status}`);
+
+    throw new Error(err.message || ('HTTP ' + r.status));
+
   }
+
   return r.json();
+
 }
+
+
 
 async function loadFromCloud() {
+
   if (!cfg.token || !cfg.repo) {
+
     setStatus('未配置', 'err');
+
     $('configPanel').style.display = 'block';
+
     return;
+
   }
+
   try {
+
     setStatus('加载中…');
+
     const data = await gh('/contents/vocab.json');
+
     const content = JSON.parse(atob(data.content.replace(/\n/g, '')));
+
     list = Array.isArray(content) ? content : (content.list || []);
+
     sha = data.sha;
+
     saveLocal();
+
     render();
-    setStatus(`已同步（${list.length} 词）`, 'ok');
+
+    setStatus('已同步 (' + list.length + ' 词)', 'ok');
+
   } catch(e) {
+
     if (String(e.message).includes('404')) {
+
       list = []; sha = null;
+
       saveLocal(); render();
+
       setStatus('云端为空,可开始添加', 'ok');
+
     } else {
+
       setStatus('加载失败: ' + e.message, 'err');
+
       list = JSON.parse(localStorage.getItem('vocab_tts_data_v1') || '[]');
+
       render();
+
     }
+
   }
+
 }
+
+
 
 async function saveToCloud() {
+
   if (!cfg.token || !cfg.repo) {
+
     showToast('请先配置 Token', 'err');
+
     $('configPanel').style.display = 'block';
+
     return false;
+
   }
+
   try {
+
     setStatus('同步中…');
+
     const body = {
-      message: `update vocab (${list.length} words) - ${new Date().toLocaleString('zh-CN')}`,
+
+      message: 'update vocab (' + list.length + ' words) - ' + new Date().toLocaleString('zh-CN'),
+
       content: btoa(unescape(encodeURIComponent(JSON.stringify(list, null, 2))))
+
     };
+
     if (sha) body.sha = sha;
+
     const res = await gh('/contents/vocab.json', 'PUT', body);
+
     sha = res.content.sha;
+
     saveLocal();
+
     dirty = false;
-    setStatus(`已同步（${list.length} 词）`, 'ok`);
+
+    setStatus('已同步 (' + list.length + ' 词)', 'ok');
+
     return true;
+
   } catch(e) {
+
     setStatus('同步失败: ' + e.message, 'err');
+
     showToast('同步失败,请检查网络或 Token 权限', 'err');
+
     return false;
+
   }
+
 }
+
+
 
 function saveLocal() {
+
   localStorage.setItem('vocab_tts_data_v1', JSON.stringify(list));
+
 }
+
+
 
 let syncTimer = null;
+
 function scheduleSync() {
+
   dirty = true;
+
   setStatus('有未同步改动', 'err');
+
   clearTimeout(syncTimer);
+
   syncTimer = setTimeout(() => { saveToCloud(); }, 1500);
+
 }
 
+
+
 // ================= 渲染 =================
-function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&','<':'<','>':'>','"':'"'}[c]))}
+
+function esc(s) {
+
+  return String(s || '').replace(/[&<>"]/g, c => ({'&':'&','<':'<','>':'>','"':'"'}[c]));
+
+}
+
+
 
 function render() {
   const box = $('list');
+  box.textContent = '';
   if (!list.length) {
     box.innerHTML = '<div class="empty">还没有单词,先在上面添加吧 ☝️</div>';
     return;
   }
-  box.innerHTML = list.map((it, i) => `
-    <div class="item" data-i="${i}">
-      <span class="w">${esc(it.word)}</span>
-      ${it.phon ? `<span class="phon">${esc(it.phon)}</span>` : ''}
-      <span class="m">${esc(it.meaning || '')}</span>
-      ${it.example ? `<div class="ex">📝 ${esc(it.example)}</div>` : ''}
-      <div class="act">
-        <button class="play" title="朗读">▶</button>
-        <button class="loop" title="循环3次">🔁</button>
-        <button class="edit sec" title="编辑">✎</button>
-        <button class="del danger" title="删除">✕</button>
-     </div>
-   </div>
-  `).join('');
+  const frag = document.createDocumentFragment();
+  for (let i = 0; i < list.length; i++) {
+    const it = list[i];
+    const item = document.createElement('div');
+    item.className = 'item';
+    item.dataset.i = String(i);
+
+    const w = document.createElement('span');
+    w.className = 'w';
+    w.textContent = it.word;
+    item.appendChild(w);
+
+    const m = document.createElement('span');
+    m.className = 'm';
+    m.textContent = it.meaning || '';
+    item.appendChild(m);
+
+    if (it.example) {
+      const ex = document.createElement('div');
+      ex.className = 'ex';
+      ex.textContent = '📝 ' + it.example;
+      item.appendChild(ex);
+    }
+
+    const act = document.createElement('div');
+    act.className = 'act';
+    ['play', 'loop', 'edit', 'del'].forEach((cls, idx) => {
+      const btn = document.createElement('button');
+      btn.className = cls + (idx >= 2 ? (idx === 2 ? ' sec' : ' danger') : '');
+      if (idx === 2) btn.className = 'edit sec';
+      if (idx === 3) btn.className = 'del danger';
+      btn.textContent = ['▶', '🔁', '✎', '✕'][idx];
+      btn.title = ['朗读', '循环3次', '编辑', '删除'][idx];
+      act.appendChild(btn);
+    });
+    item.appendChild(act);
+    frag.appendChild(item);
+  }
+  box.appendChild(frag);
   bindList();
 }
 
+
+
 function bindList() {
+
   $('list').querySelectorAll('.item').forEach(row => {
+
     const i = +row.dataset.i;
+
     row.querySelector('.play').onclick = () => speak(list[i]);
+
     row.querySelector('.loop').onclick = async () => {
+
       synth.cancel();
-      for (let k=0;k<3;k++) await speak(list[i]);
+
+      for (let k = 0; k < 3; k++) await speak(list[i]);
+
     };
+
     row.querySelector('.edit').onclick = () => editItem(i);
+
     row.querySelector('.del').onclick = () => {
-      if (confirm(`删除「${list[i].word}」？`)) {
-        list.splice(i,1); render(); scheduleSync();
+
+      if (confirm('删除「' + list[i].word + '」?')) {
+
+        list.splice(i, 1); render(); scheduleSync();
+
       }
+
     };
+
   });
+
 }
+
+
 
 // ================= 增删改 =================
+
 function addOrUpdate() {
+
   const w = $('inWord').value.trim();
+
   const m = $('inMeaning').value.trim();
+
   if (!w) { showToast('请填写单词', 'err'); $('inWord').focus(); return; }
+
   const item = {
+
     word: w,
-    phon: $('inPhon').value.trim(),
+
     meaning: m,
+
     example: $('inExample').value.trim(),
+
     t: Date.now()
+
   };
+
   const idx = $('addBtn').dataset.editIdx;
+
   if (idx !== undefined && idx !== '') {
-    list[+idx] = { ...list[+idx], ...item };
+
+    list[+idx] = Object.assign({}, list[+idx], item);
+
     delete $('addBtn').dataset.editIdx;
+
     $('addBtn').textContent = '➕ 添加';
+
   } else {
+
     list.unshift(item);
+
   }
-  ['inWord','inMeaning','inPhon','inExample'].forEach(id => $(id).value = '');
+
+  ['inWord', 'inMeaning', 'inExample'].forEach(id => $(id).value = '');
+
   render();
+
   scheduleSync();
+
   $('inWord').focus();
+
 }
+
+
 
 function editItem(i) {
+
   const it = list[i];
+
   $('inWord').value = it.word;
+
   $('inMeaning').value = it.meaning || '';
-  $('inPhon').value = it.phon || '';
+
   $('inExample').value = it.example || '';
+
   $('addBtn').textContent = '💾 保存修改';
+
   $('addBtn').dataset.editIdx = i;
-  window.scrollTo({top:0, behavior:'smooth'});
+
+  window.scrollTo({top: 0, behavior: 'smooth'});
+
   $('inWord').focus();
+
 }
+
+
 
 $('addBtn').onclick = addOrUpdate;
-$('inWord').addEventListener('keydown', e => { if (e.key==='Enter') $('inMeaning').focus(); });
-$('inMeaning').addEventListener('keydown', e => { if (e.key==='Enter') addOrUpdate(); });
+
+$('inWord').addEventListener('keydown', e => { if (e.key === 'Enter') $('inMeaning').focus(); });
+
+$('inMeaning').addEventListener('keydown', e => { if (e.key === 'Enter') addOrUpdate(); });
+
+
 
 // ================= TTS =================
+
 const synth = speechSynthesis;
+
 const voiceSel = $('voice');
+
 function loadVoices() {
+
   const voices = synth.getVoices();
-  voiceSel.innerHTML = voices.map((v,i)=>`<option value="${i}">${v.name} (${v.lang})</option>`).join('');
+
+  voiceSel.innerHTML = voices.map((v, i) => '<option value="' + i + '">' + v.name + ' (' + v.lang + '</option>').join('');
+
   window._voices = voices;
+
 }
+
 loadVoices();
+
 synth.onvoiceschanged = loadVoices;
+
 $('rate').oninput = e => $('rateV').textContent = e.target.value;
 
+
+
 function speak(item) {
+
   return new Promise(resolve => {
+
     const u1 = new SpeechSynthesisUtterance(item.word);
+
     const u2 = new SpeechSynthesisUtterance(item.meaning || '');
+
     u2.lang = 'zh-CN';
+
     [u1, u2].forEach(u => {
+
       u.rate = +$('rate').value;
+
       u.pitch = 1;
-      const v = window._voices[voiceSel.value];
+
+      const v = window._voices && window._voices[voiceSel.value];
+
       if (v && u === u1) { u.voice = v; u.lang = v.lang; }
+
     });
+
     u2.onend = resolve;
+
     u1.onend = () => synth.speak(u2);
+
     synth.cancel();
+
     synth.speak(u1);
+
   });
+
 }
+
+
 
 $('playAll').onclick = async () => {
+
   if (!list.length) { showToast('单词列表为空', 'err'); return; }
+
   synth.cancel();
-  for (let i=0;i<list.length;i++) {
+
+  for (let i = 0; i < list.length; i++) {
+
     await speak(list[i]);
+
     if (!loopMode) await new Promise(r => setTimeout(r, 1200));
+
     else { if (i === list.length - 1) i = -1; }
+
   }
+
 };
+
+
 
 $('loopMode').onclick = () => {
+
   loopMode = !loopMode;
-  $('loopMode').textContent = loopMode ? '🔁 循环模式：开' : '🔁 循环模式：关';
+
+  $('loopMode').textContent = loopMode ? '🔁 循环模式:开' : '🔁 循环模式:关';
+
   $('loopMode').classList.toggle('success', loopMode);
+
 };
+
+
 
 $('stop').onclick = () => synth.cancel();
+
 $('refresh').onclick = () => loadFromCloud();
+
 $('showConfig').onclick = () => {
+
   $('configPanel').style.display = 'block';
+
   $('cfgToken').value = cfg.token || '';
+
   $('cfgRepo').value = cfg.repo || '';
+
 };
 
+
+
 // ================= 配置 =================
+
 function saveCfg() {
+
   cfg.token = $('cfgToken').value.trim();
+
   cfg.repo = $('cfgRepo').value.trim();
+
   if (!cfg.token || !cfg.repo) { showToast('请填写完整', 'err'); return; }
+
   localStorage.setItem(CFG_KEY, JSON.stringify(cfg));
+
   showToast('配置已保存', 'ok');
+
   $('configPanel').style.display = 'none';
+
   loadFromCloud();
+
 }
+
 $('cfgSave').onclick = saveCfg;
 
+
+
 // ================= 启动 =================
+
 (async function init() {
+
   if (cfg.token && cfg.repo) {
+
     $('configPanel').style.display = 'none';
+
     await loadFromCloud();
+
   } else {
+
     setStatus('未配置', 'err');
+
     $('configPanel').style.display = 'block';
+
     $('cfgRepo').value = 'qianzhu123/vocab-tts';
+
     list = JSON.parse(localStorage.getItem('vocab_tts_data_v1') || '[]');
+
     render();
+
   }
+
 })();
 
+
+
 window.addEventListener('beforeunload', e => {
+
   if (dirty) { e.preventDefault(); e.returnValue = '有未同步改动'; }
+
 });
+
 </script>
+
 </body>
+
 </html>
+
