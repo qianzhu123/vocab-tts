@@ -1,135 +1,9 @@
 [
   {
-    "word": "mastery",
-    "meaning": "n. 精通，掌握；统治，驾驭",
+    "word": "subcommittee",
+    "meaning": "n. 小组委员会",
     "example": "",
-    "t": 1789572711024
-  },
-  {
-    "word": "decrepitude",
-    "meaning": "n. 衰老，老朽，破旧",
-    "example": "",
-    "t": 1789572711023
-  },
-  {
-    "word": "converse",
-    "meaning": "vi. (与…) 交谈 / n. 相反的事物，相反的言论 / adj. 相反的，逆的",
-    "example": "",
-    "t": 1789572711022
-  },
-  {
-    "word": "decrepit",
-    "meaning": "adj. 衰老的，破旧的",
-    "example": "",
-    "t": 1789572711021
-  },
-  {
-    "word": "outward",
-    "meaning": "adj. 外表的，表面上的；向外的 / adv. 向外",
-    "example": "",
-    "t": 1789572711020
-  },
-  {
-    "word": "committee",
-    "meaning": "n. 委员会",
-    "example": "",
-    "t": 1789572711019
-  },
-  {
-    "word": "invert",
-    "meaning": "vt. (使) 颠倒，逆转，倒置",
-    "example": "",
-    "t": 1789572711018
-  },
-  {
-    "word": "quotation",
-    "meaning": "n. 引文，引语；引用；报价；牌价",
-    "example": "",
-    "t": 1789572711017
-  },
-  {
-    "word": "thrive",
-    "meaning": "vi. 兴旺，繁荣，欣欣向荣",
-    "example": "",
-    "t": 1789572711016
-  },
-  {
-    "word": "reversal",
-    "meaning": "n. 颠倒，反转；困难，挫折",
-    "example": "",
-    "t": 1789572711015
-  },
-  {
-    "word": "financially",
-    "meaning": "adv. 金融上，财政上",
-    "example": "",
-    "t": 1789572711014
-  },
-  {
-    "word": "anthropologist",
-    "meaning": "n. 人类学家",
-    "example": "",
-    "t": 1789572711013
-  },
-  {
-    "word": "recruit",
-    "meaning": "vt. vi. 招收，招聘，征召 / n. 新兵；新成员",
-    "example": "",
-    "t": 1789572711012
-  },
-  {
-    "word": "retarded",
-    "meaning": "adj. 弱智的，智力迟钝的 (冒犯性)",
-    "example": "",
-    "t": 1789572711011
-  },
-  {
-    "word": "comparative",
-    "meaning": "adj. 比较的；相对的；比较级的 / n. (形容词或副词的) 比较级",
-    "example": "",
-    "t": 1789572711010
-  },
-  {
-    "word": "reversible",
-    "meaning": "adj. 可逆的；可两面穿的",
-    "example": "",
-    "t": 1789572711009
-  },
-  {
-    "word": "banish",
-    "meaning": "vt. 放逐，把…驱逐出境；去除",
-    "example": "",
-    "t": 1789572711008
-  },
-  {
-    "word": "precision",
-    "meaning": "n. 精确，精密 / adj. 精确的，精密的",
-    "example": "",
-    "t": 1789572711007
-  },
-  {
-    "word": "revoke",
-    "meaning": "vt. 废除，取消",
-    "example": "",
-    "t": 1789572711006
-  },
-  {
-    "word": "entertainment",
-    "meaning": "n. 娱乐节目，娱乐活动；招待",
-    "example": "",
-    "t": 1789572711005
-  },
-  {
-    "word": "gloss",
-    "meaning": "n. 光泽；唇彩；假象；注释 / vt. 在…上作注释；粉饰",
-    "example": "",
-    "t": 1789572711004
-  },
-  {
-    "word": "exile",
-    "meaning": "n. 流放，流亡；被流放者 / vt. 流放，放逐",
-    "example": "",
-    "t": 1789572711003
+    "t": 1789572711001
   },
   {
     "word": "comparatively",
@@ -138,184 +12,136 @@
     "t": 1789572711002
   },
   {
-    "word": "subcommittee",
-    "meaning": "n. 小组委员会",
+    "word": "exile",
+    "meaning": "n. 流放，流亡；被流放者 / vt. 流放，放逐",
     "example": "",
-    "t": 1789572711001
+    "t": 1789572711003
   },
   {
-    "word": "typically",
-    "meaning": "adv. 一般地；典型地；果不其然地",
+    "word": "gloss",
+    "meaning": "n. 光泽；唇彩；假象；注释 / vt. 在…上作注释；粉饰",
     "example": "",
-    "t": 1789484366030
+    "t": 1789572711004
   },
   {
-    "word": "inducement",
-    "meaning": "n. 诱惑，引诱物",
+    "word": "entertainment",
+    "meaning": "n. 娱乐节目，娱乐活动；招待",
     "example": "",
-    "t": 1789484366029
+    "t": 1789572711005
   },
   {
-    "word": "inclusively",
-    "meaning": "adv. 全面地，范围广泛地",
+    "word": "revoke",
+    "meaning": "vt. 废除，取消",
     "example": "",
-    "t": 1789484366028
+    "t": 1789572711006
   },
   {
-    "word": "cosset",
-    "meaning": "vt. 宠爱，娇养",
+    "word": "precision",
+    "meaning": "n. 精确，精密 / adj. 精确的，精密的",
     "example": "",
-    "t": 1789484366027
+    "t": 1789572711007
   },
   {
-    "word": "typical",
-    "meaning": "adj. 典型的；一贯的；果不其然的",
+    "word": "banish",
+    "meaning": "vt. 放逐，把…驱逐出境；去除",
     "example": "",
-    "t": 1789484366026
+    "t": 1789572711008
   },
   {
-    "word": "unreasonable",
-    "meaning": "adj. 不合理的，不公正的",
+    "word": "reversible",
+    "meaning": "adj. 可逆的；可两面穿的",
     "example": "",
-    "t": 1789484366025
+    "t": 1789572711009
   },
   {
-    "word": "lavatory",
-    "meaning": "n. 厕所，洗手间",
+    "word": "comparative",
+    "meaning": "adj. 比较的；相对的；比较级的 / n. (形容词或副词的) 比较级",
     "example": "",
-    "t": 1789484366024
+    "t": 1789572711010
   },
   {
-    "word": "abode",
-    "meaning": "n. 住所，居所",
+    "word": "retarded",
+    "meaning": "adj. 弱智的，智力迟钝的 (冒犯性)",
     "example": "",
-    "t": 1789484366023
+    "t": 1789572711011
   },
   {
-    "word": "muddle",
-    "meaning": "n. 糊涂，困惑；一团糟 / vt. 弄乱，搅混；使困惑；混淆",
+    "word": "recruit",
+    "meaning": "vt. vi. 招收，招聘，征召 / n. 新兵；新成员",
     "example": "",
-    "t": 1789484366022
+    "t": 1789572711012
   },
   {
-    "word": "fold",
-    "meaning": "vt. vi. 折叠，对折；包，裹 / vi. 倒闭，停演 / n. 褶，褶层；褶痕；羊圈 / suff. 由…部分组成的；倍",
+    "word": "anthropologist",
+    "meaning": "n. 人类学家",
     "example": "",
-    "t": 1789484366021
+    "t": 1789572711013
   },
   {
-    "word": "expensive",
-    "meaning": "adj. 昂贵的",
+    "word": "financially",
+    "meaning": "adv. 金融上，财政上",
     "example": "",
-    "t": 1789484366020
+    "t": 1789572711014
   },
   {
-    "word": "transcript",
-    "meaning": "n. 抄本，转录本；成绩报告单",
+    "word": "reversal",
+    "meaning": "n. 颠倒，反转；困难，挫折",
     "example": "",
-    "t": 1789484366019
+    "t": 1789572711015
   },
   {
-    "word": "origination",
-    "meaning": "n. 开始，起源",
+    "word": "thrive",
+    "meaning": "vi. 兴旺，繁荣，欣欣向荣",
     "example": "",
-    "t": 1789484366018
+    "t": 1789572711016
   },
   {
-    "word": "atomic",
-    "meaning": "adj. 原子的；原子能的",
+    "word": "quotation",
+    "meaning": "n. 引文，引语；引用；报价；牌价",
     "example": "",
-    "t": 1789484366017
+    "t": 1789572711017
   },
   {
-    "word": "representative",
-    "meaning": "n. 代表；(美国) 众议院议员 / adj. 典型的，有代表性的；代议制的",
+    "word": "invert",
+    "meaning": "vt. (使) 颠倒，逆转，倒置",
     "example": "",
-    "t": 1789484366016
+    "t": 1789572711018
   },
   {
-    "word": "tune",
-    "meaning": "n. 曲调，曲子 / vt. 调音；调整；调频道",
+    "word": "committee",
+    "meaning": "n. 委员会",
     "example": "",
-    "t": 1789484366015
+    "t": 1789572711019
   },
   {
-    "word": "disagreement",
-    "meaning": "n. 分歧，争执；不一致",
+    "word": "outward",
+    "meaning": "adj. 外表的，表面上的；向外的 / adv. 向外",
     "example": "",
-    "t": 1789484366014
+    "t": 1789572711020
   },
   {
-    "word": "irritation",
-    "meaning": "n. 恼怒，恼人的事；发炎",
+    "word": "decrepit",
+    "meaning": "adj. 衰老的，破旧的",
     "example": "",
-    "t": 1789484366013
+    "t": 1789572711021
   },
   {
-    "word": "gadget",
-    "meaning": "n. 小器具，小装置",
+    "word": "converse",
+    "meaning": "vi. (与…) 交谈 / n. 相反的事物，相反的言论 / adj. 相反的，逆的",
     "example": "",
-    "t": 1789484366012
+    "t": 1789572711022
   },
   {
-    "word": "originative",
-    "meaning": "adj. 有创造力的",
+    "word": "decrepitude",
+    "meaning": "n. 衰老，老朽，破旧",
     "example": "",
-    "t": 1789484366011
+    "t": 1789572711023
   },
   {
-    "word": "silt",
-    "meaning": "n. 淤泥，(沉积的) 泥沙 / vi. 淤塞",
+    "word": "mastery",
+    "meaning": "n. 精通，掌握；统治，驾驭",
     "example": "",
-    "t": 1789484366010
-  },
-  {
-    "word": "disharmony",
-    "meaning": "n. 不和谐，不协调",
-    "example": "",
-    "t": 1789484366009
-  },
-  {
-    "word": "enforced",
-    "meaning": "adj. 强制的，强迫的",
-    "example": "",
-    "t": 1789484366008
-  },
-  {
-    "word": "originator",
-    "meaning": "n. 创始人，发明者，提出者",
-    "example": "",
-    "t": 1789484366007
-  },
-  {
-    "word": "inducible",
-    "meaning": "adj. 可诱导的，可导致的",
-    "example": "",
-    "t": 1789484366006
-  },
-  {
-    "word": "mandatory",
-    "meaning": "adj. 强制的，法定的，义务的",
-    "example": "",
-    "t": 1789484366005
-  },
-  {
-    "word": "compulsory",
-    "meaning": "adj. 强制性的，义务的",
-    "example": "",
-    "t": 1789484366004
-  },
-  {
-    "word": "legacy",
-    "meaning": "n. 遗产，遗赠；遗留问题 / adj. (计算机系统等) 已停止更新的",
-    "example": "",
-    "t": 1789484366003
-  },
-  {
-    "word": "gadgetry",
-    "meaning": "n. (统称) 小器具，精巧装置",
-    "example": "",
-    "t": 1789484366002
+    "t": 1789572711024
   },
   {
     "word": "niche",
@@ -324,178 +150,178 @@
     "t": 1789484366001
   },
   {
-    "word": "cruise",
-    "meaning": "n. 乘船游览，航行 / vi. vt. 乘船游览；慢速行驶，巡行 / vi. 以平稳的速度行驶；轻易赢得",
+    "word": "gadgetry",
+    "meaning": "n. (统称) 小器具，精巧装置",
     "example": "",
-    "t": 1789484351030
+    "t": 1789484366002
   },
   {
-    "word": "deterioration",
-    "meaning": "n. 恶化，衰退",
+    "word": "legacy",
+    "meaning": "n. 遗产，遗赠；遗留问题 / adj. (计算机系统等) 已停止更新的",
     "example": "",
-    "t": 1789484351029
+    "t": 1789484366003
   },
   {
-    "word": "pierce",
-    "meaning": "vt. vi. 刺入；(光、声等) 穿透；突破",
+    "word": "compulsory",
+    "meaning": "adj. 强制性的，义务的",
     "example": "",
-    "t": 1789484351028
+    "t": 1789484366004
   },
   {
-    "word": "unaware",
-    "meaning": "adj. 不知道的，没意识到的",
+    "word": "mandatory",
+    "meaning": "adj. 强制的，法定的，义务的",
     "example": "",
-    "t": 1789484351027
+    "t": 1789484366005
   },
   {
-    "word": "exclusively",
-    "meaning": "adv. 仅仅，专⻔地，排他地",
+    "word": "inducible",
+    "meaning": "adj. 可诱导的，可导致的",
     "example": "",
-    "t": 1789484351026
+    "t": 1789484366006
   },
   {
-    "word": "vanish",
-    "meaning": "vi. 突然消失；消亡，灭绝",
+    "word": "originator",
+    "meaning": "n. 创始人，发明者，提出者",
     "example": "",
-    "t": 1789484351025
+    "t": 1789484366007
   },
   {
-    "word": "general",
-    "meaning": "adj. 普遍的，总的；通常的；大概的 / adj. 泛的；首席的，总管的 / n. 将军",
+    "word": "enforced",
+    "meaning": "adj. 强制的，强迫的",
     "example": "",
-    "t": 1789484351024
+    "t": 1789484366008
   },
   {
-    "word": "conventionally",
-    "meaning": "adv. 按照惯例，公认地",
+    "word": "disharmony",
+    "meaning": "n. 不和谐，不协调",
     "example": "",
-    "t": 1789484351023
+    "t": 1789484366009
   },
   {
-    "word": "outpost",
-    "meaning": "n. 偏远村镇；前哨基地",
+    "word": "silt",
+    "meaning": "n. 淤泥，(沉积的) 泥沙 / vi. 淤塞",
     "example": "",
-    "t": 1789484351022
+    "t": 1789484366010
   },
   {
-    "word": "vertebrate",
-    "meaning": "n. 脊椎动物 / adj. 有脊椎的",
+    "word": "originative",
+    "meaning": "adj. 有创造力的",
     "example": "",
-    "t": 1789484351021
+    "t": 1789484366011
   },
   {
-    "word": "intercept",
-    "meaning": "vt. 拦截，拦阻，截住",
+    "word": "gadget",
+    "meaning": "n. 小器具，小装置",
     "example": "",
-    "t": 1789484351020
+    "t": 1789484366012
   },
   {
-    "word": "shave",
-    "meaning": "vi. vt. 刮胡子，刮脸 / vt. (少量地) 削减，调低，降低 / n. 刮胡子，刮脸",
+    "word": "irritation",
+    "meaning": "n. 恼怒，恼人的事；发炎",
     "example": "",
-    "t": 1789484351019
+    "t": 1789484366013
   },
   {
-    "word": "intestine",
-    "meaning": "n. 肠，肠子",
+    "word": "disagreement",
+    "meaning": "n. 分歧，争执；不一致",
     "example": "",
-    "t": 1789484351018
+    "t": 1789484366014
   },
   {
-    "word": "ion",
-    "meaning": "n. 离子",
+    "word": "tune",
+    "meaning": "n. 曲调，曲子 / vt. 调音；调整；调频道",
     "example": "",
-    "t": 1789484351017
+    "t": 1789484366015
   },
   {
-    "word": "erosion",
-    "meaning": "n. 侵蚀，⻛化；逐渐削弱",
+    "word": "representative",
+    "meaning": "n. 代表；(美国) 众议院议员 / adj. 典型的，有代表性的；代议制的",
     "example": "",
-    "t": 1789484351016
+    "t": 1789484366016
   },
   {
-    "word": "crossroad",
-    "meaning": "n. 十字路口，交叉路口",
+    "word": "atomic",
+    "meaning": "adj. 原子的；原子能的",
     "example": "",
-    "t": 1789484351015
+    "t": 1789484366017
   },
   {
-    "word": "administrator",
-    "meaning": "n. 管理人员，行政人员",
+    "word": "origination",
+    "meaning": "n. 开始，起源",
     "example": "",
-    "t": 1789484351014
+    "t": 1789484366018
   },
   {
-    "word": "convention",
-    "meaning": "n. 习俗，惯例；大会；公约，协定",
+    "word": "transcript",
+    "meaning": "n. 抄本，转录本；成绩报告单",
     "example": "",
-    "t": 1789484351013
+    "t": 1789484366019
   },
   {
-    "word": "incredible",
-    "meaning": "adj. 极好的，极大的；难以置信的",
+    "word": "expensive",
+    "meaning": "adj. 昂贵的",
     "example": "",
-    "t": 1789484351012
+    "t": 1789484366020
   },
   {
-    "word": "ionizer",
-    "meaning": "n. 负离子发生器",
+    "word": "fold",
+    "meaning": "vt. vi. 折叠，对折；包，裹 / vi. 倒闭，停演 / n. 褶，褶层；褶痕；羊圈 / suff. 由…部分组成的；倍",
     "example": "",
-    "t": 1789484351011
+    "t": 1789484366021
   },
   {
-    "word": "workaholic",
-    "meaning": "n. 工作狂",
+    "word": "muddle",
+    "meaning": "n. 糊涂，困惑；一团糟 / vt. 弄乱，搅混；使困惑；混淆",
     "example": "",
-    "t": 1789484351010
+    "t": 1789484366022
   },
   {
-    "word": "generalization",
-    "meaning": "n. (片面的) 概括，归纳",
+    "word": "abode",
+    "meaning": "n. 住所，居所",
     "example": "",
-    "t": 1789484351009
+    "t": 1789484366023
   },
   {
-    "word": "consignment",
-    "meaning": "n. 运送的货物；运送，寄售",
+    "word": "lavatory",
+    "meaning": "n. 厕所，洗手间",
     "example": "",
-    "t": 1789484351008
+    "t": 1789484366024
   },
   {
-    "word": "trapeze",
-    "meaning": "n. (⻢戏团的) 高空秋千，吊杠",
+    "word": "unreasonable",
+    "meaning": "adj. 不合理的，不公正的",
     "example": "",
-    "t": 1789484351007
+    "t": 1789484366025
   },
   {
-    "word": "pronounceable",
-    "meaning": "adj. 可发音的，读得出的",
+    "word": "typical",
+    "meaning": "adj. 典型的；一贯的；果不其然的",
     "example": "",
-    "t": 1789484351006
+    "t": 1789484366026
   },
   {
-    "word": "industrious",
-    "meaning": "adj. 勤劳的，勤奋的",
+    "word": "cosset",
+    "meaning": "vt. 宠爱，娇养",
     "example": "",
-    "t": 1789484351005
+    "t": 1789484366027
   },
   {
-    "word": "mirage",
-    "meaning": "n. 海市蜃楼，幻景；幻想，妄想",
+    "word": "inclusively",
+    "meaning": "adv. 全面地，范围广泛地",
     "example": "",
-    "t": 1789484351004
+    "t": 1789484366028
   },
   {
-    "word": "corrosion",
-    "meaning": "n. 腐蚀",
+    "word": "inducement",
+    "meaning": "n. 诱惑，引诱物",
     "example": "",
-    "t": 1789484351003
+    "t": 1789484366029
   },
   {
-    "word": "hose",
-    "meaning": "n. 软管，㬵管；(旧时) 男式紧身裤 / vt. 用软管洒水、清洗等",
+    "word": "typically",
+    "meaning": "adv. 一般地；典型地；果不其然地",
     "example": "",
-    "t": 1789484351002
+    "t": 1789484366030
   },
   {
     "word": "unconventional",
@@ -504,166 +330,184 @@
     "t": 1789484351001
   },
   {
-    "word": "profit",
-    "meaning": "n. 利润，收益；益处，好处 / vi. vt. 得益 (于)，对…有益",
+    "word": "hose",
+    "meaning": "n. 软管，㬵管；(旧时) 男式紧身裤 / vt. 用软管洒水、清洗等",
     "example": "",
-    "t": 1789440134029
+    "t": 1789484351002
   },
   {
-    "word": "flap",
-    "meaning": "vt. vi. 拍打 (翅膀)；摆动，挥动 / vi. 忧虑，激动 / n. 片状垂悬物；拍打 (声)；忧虑",
+    "word": "corrosion",
+    "meaning": "n. 腐蚀",
     "example": "",
-    "t": 1789440134028
+    "t": 1789484351003
   },
   {
-    "word": "equator",
-    "meaning": "n. 赤道",
+    "word": "mirage",
+    "meaning": "n. 海市蜃楼，幻景；幻想，妄想",
     "example": "",
-    "t": 1789440134027
+    "t": 1789484351004
   },
   {
-    "word": "intersection",
-    "meaning": "n. 交点，道路交叉口；交叉",
+    "word": "industrious",
+    "meaning": "adj. 勤劳的，勤奋的",
     "example": "",
-    "t": 1789440134026
+    "t": 1789484351005
   },
   {
-    "word": "astrology",
-    "meaning": "n. 占星术",
+    "word": "pronounceable",
+    "meaning": "adj. 可发音的，读得出的",
     "example": "",
-    "t": 1789440134025
+    "t": 1789484351006
   },
   {
-    "word": "clamour",
-    "meaning": "vi. vt. 大声要求，愤怒疾呼 / n. 嘈杂声，吵闹声",
+    "word": "trapeze",
+    "meaning": "n. (⻢戏团的) 高空秋千，吊杠",
     "example": "",
-    "t": 1789440134024
+    "t": 1789484351007
   },
   {
-    "word": "expel",
-    "meaning": "vt. 开除；驱逐出境；排出",
+    "word": "consignment",
+    "meaning": "n. 运送的货物；运送，寄售",
     "example": "",
-    "t": 1789440134023
+    "t": 1789484351008
   },
   {
-    "word": "lecture",
-    "meaning": "n. 讲座，讲课；训诫 / vi. 开讲座，讲授 / vt. 训诫，教训",
+    "word": "generalization",
+    "meaning": "n. (片面的) 概括，归纳",
     "example": "",
-    "t": 1789440134022
+    "t": 1789484351009
   },
   {
-    "word": "investor",
-    "meaning": "n. 投资者，投资机构",
+    "word": "workaholic",
+    "meaning": "n. 工作狂",
     "example": "",
-    "t": 1789440134021
+    "t": 1789484351010
   },
   {
-    "word": "counsellor",
-    "meaning": "n. 顾问；律师；夏令营负责人",
+    "word": "ionizer",
+    "meaning": "n. 负离子发生器",
     "example": "",
-    "t": 1789440134020
+    "t": 1789484351011
   },
   {
-    "word": "discretion",
-    "meaning": "n. 自主决定权；谨慎，慎重",
+    "word": "incredible",
+    "meaning": "adj. 极好的，极大的；难以置信的",
     "example": "",
-    "t": 1789440134019
+    "t": 1789484351012
   },
   {
-    "word": "fauna",
-    "meaning": "n. (尤指某个地区的) 动物群",
+    "word": "convention",
+    "meaning": "n. 习俗，惯例；大会；公约，协定",
     "example": "",
-    "t": 1789440134018
+    "t": 1789484351013
   },
   {
-    "word": "wastage",
-    "meaning": "n. 浪费，损耗；自然减员",
+    "word": "administrator",
+    "meaning": "n. 管理人员，行政人员",
     "example": "",
-    "t": 1789440134017
+    "t": 1789484351014
   },
   {
-    "word": "minimise",
-    "meaning": "vt. 使减至最低程度；对…轻描淡写",
+    "word": "crossroad",
+    "meaning": "n. 十字路口，交叉路口",
     "example": "",
-    "t": 1789440134016
+    "t": 1789484351015
   },
   {
-    "word": "humble",
-    "meaning": "adj. 谦逊的；卑微的；不起眼的 / vt. 使感到卑微；低声下气",
+    "word": "erosion",
+    "meaning": "n. 侵蚀，⻛化；逐渐削弱",
     "example": "",
-    "t": 1789440134015
+    "t": 1789484351016
   },
   {
-    "word": "ambitious",
-    "meaning": "adj. 有野心的；规模宏大的，艰巨的",
+    "word": "ion",
+    "meaning": "n. 离子",
     "example": "",
-    "t": 1789440134014
+    "t": 1789484351017
   },
   {
-    "word": "ranger",
-    "meaning": "n. 园林管理员；突击队员",
+    "word": "intestine",
+    "meaning": "n. 肠，肠子",
     "example": "",
-    "t": 1789440134013
+    "t": 1789484351018
   },
   {
-    "word": "dub",
-    "meaning": "vt. 将…戏称为；为…配音",
+    "word": "shave",
+    "meaning": "vi. vt. 刮胡子，刮脸 / vt. (少量地) 削减，调低，降低 / n. 刮胡子，刮脸",
     "example": "",
-    "t": 1789440134012
+    "t": 1789484351019
   },
   {
-    "word": "cardiovascular",
-    "meaning": "adj. 心血管的，心脏血管的",
+    "word": "intercept",
+    "meaning": "vt. 拦截，拦阻，截住",
     "example": "",
-    "t": 1789440134011
+    "t": 1789484351020
   },
   {
-    "word": "lecturer",
-    "meaning": "n. 讲课者，讲授者；(大学) 讲师",
+    "word": "vertebrate",
+    "meaning": "n. 脊椎动物 / adj. 有脊椎的",
     "example": "",
-    "t": 1789440134010
+    "t": 1789484351021
   },
   {
-    "word": "divisional",
-    "meaning": "adj. 部⻔的，小组的",
+    "word": "outpost",
+    "meaning": "n. 偏远村镇；前哨基地",
     "example": "",
-    "t": 1789440134009
+    "t": 1789484351022
   },
   {
-    "word": "agitation",
-    "meaning": "n. 焦虑；骚动，煽动；搅动，摇动",
+    "word": "conventionally",
+    "meaning": "adv. 按照惯例，公认地",
     "example": "",
-    "t": 1789440134008
+    "t": 1789484351023
   },
   {
-    "word": "attest",
-    "meaning": "vi. vt. 证明，证实",
+    "word": "general",
+    "meaning": "adj. 普遍的，总的；通常的；大概的 / adj. 泛的；首席的，总管的 / n. 将军",
     "example": "",
-    "t": 1789440134007
+    "t": 1789484351024
   },
   {
-    "word": "pirate",
-    "meaning": "n. 海盗；盗版者；非法广播者 / vt. 盗版，侵犯版权",
+    "word": "vanish",
+    "meaning": "vi. 突然消失；消亡，灭绝",
     "example": "",
-    "t": 1789440134006
+    "t": 1789484351025
   },
   {
-    "word": "commotion",
-    "meaning": "n. 骚动，叛乱，喧闹",
+    "word": "exclusively",
+    "meaning": "adv. 仅仅，专⻔地，排他地",
     "example": "",
-    "t": 1789440134005
+    "t": 1789484351026
   },
   {
-    "word": "dedicate",
-    "meaning": "vt. 献身，致力于；将 (书等) 献给",
+    "word": "unaware",
+    "meaning": "adj. 不知道的，没意识到的",
     "example": "",
-    "t": 1789440134004
+    "t": 1789484351027
   },
   {
-    "word": "mould",
-    "meaning": "n. 模具，铸模；(独特) 类型；霉菌 / vt. (用模具) 浇铸；将…塑造成 / vi. vt. (使) 紧贴于，(使) 与…吻合",
+    "word": "pierce",
+    "meaning": "vt. vi. 刺入；(光、声等) 穿透；突破",
     "example": "",
-    "t": 1789440134003
+    "t": 1789484351028
+  },
+  {
+    "word": "deterioration",
+    "meaning": "n. 恶化，衰退",
+    "example": "",
+    "t": 1789484351029
+  },
+  {
+    "word": "cruise",
+    "meaning": "n. 乘船游览，航行 / vi. vt. 乘船游览；慢速行驶，巡行 / vi. 以平稳的速度行驶；轻易赢得",
+    "example": "",
+    "t": 1789484351030
+  },
+  {
+    "word": "ultimately",
+    "meaning": "adv. 最终，最后；归根结底，根本上",
+    "example": "",
+    "t": 1789440134001
   },
   {
     "word": "brass",
@@ -672,10 +516,166 @@
     "t": 1789440134002
   },
   {
-    "word": "ultimately",
-    "meaning": "adv. 最终，最后；归根结底，根本上",
+    "word": "mould",
+    "meaning": "n. 模具，铸模；(独特) 类型；霉菌 / vt. (用模具) 浇铸；将…塑造成 / vi. vt. (使) 紧贴于，(使) 与…吻合",
     "example": "",
-    "t": 1789440134001
+    "t": 1789440134003
+  },
+  {
+    "word": "dedicate",
+    "meaning": "vt. 献身，致力于；将 (书等) 献给",
+    "example": "",
+    "t": 1789440134004
+  },
+  {
+    "word": "commotion",
+    "meaning": "n. 骚动，叛乱，喧闹",
+    "example": "",
+    "t": 1789440134005
+  },
+  {
+    "word": "pirate",
+    "meaning": "n. 海盗；盗版者；非法广播者 / vt. 盗版，侵犯版权",
+    "example": "",
+    "t": 1789440134006
+  },
+  {
+    "word": "attest",
+    "meaning": "vi. vt. 证明，证实",
+    "example": "",
+    "t": 1789440134007
+  },
+  {
+    "word": "agitation",
+    "meaning": "n. 焦虑；骚动，煽动；搅动，摇动",
+    "example": "",
+    "t": 1789440134008
+  },
+  {
+    "word": "divisional",
+    "meaning": "adj. 部⻔的，小组的",
+    "example": "",
+    "t": 1789440134009
+  },
+  {
+    "word": "lecturer",
+    "meaning": "n. 讲课者，讲授者；(大学) 讲师",
+    "example": "",
+    "t": 1789440134010
+  },
+  {
+    "word": "cardiovascular",
+    "meaning": "adj. 心血管的，心脏血管的",
+    "example": "",
+    "t": 1789440134011
+  },
+  {
+    "word": "dub",
+    "meaning": "vt. 将…戏称为；为…配音",
+    "example": "",
+    "t": 1789440134012
+  },
+  {
+    "word": "ranger",
+    "meaning": "n. 园林管理员；突击队员",
+    "example": "",
+    "t": 1789440134013
+  },
+  {
+    "word": "ambitious",
+    "meaning": "adj. 有野心的；规模宏大的，艰巨的",
+    "example": "",
+    "t": 1789440134014
+  },
+  {
+    "word": "humble",
+    "meaning": "adj. 谦逊的；卑微的；不起眼的 / vt. 使感到卑微；低声下气",
+    "example": "",
+    "t": 1789440134015
+  },
+  {
+    "word": "minimise",
+    "meaning": "vt. 使减至最低程度；对…轻描淡写",
+    "example": "",
+    "t": 1789440134016
+  },
+  {
+    "word": "wastage",
+    "meaning": "n. 浪费，损耗；自然减员",
+    "example": "",
+    "t": 1789440134017
+  },
+  {
+    "word": "fauna",
+    "meaning": "n. (尤指某个地区的) 动物群",
+    "example": "",
+    "t": 1789440134018
+  },
+  {
+    "word": "discretion",
+    "meaning": "n. 自主决定权；谨慎，慎重",
+    "example": "",
+    "t": 1789440134019
+  },
+  {
+    "word": "counsellor",
+    "meaning": "n. 顾问；律师；夏令营负责人",
+    "example": "",
+    "t": 1789440134020
+  },
+  {
+    "word": "investor",
+    "meaning": "n. 投资者，投资机构",
+    "example": "",
+    "t": 1789440134021
+  },
+  {
+    "word": "lecture",
+    "meaning": "n. 讲座，讲课；训诫 / vi. 开讲座，讲授 / vt. 训诫，教训",
+    "example": "",
+    "t": 1789440134022
+  },
+  {
+    "word": "expel",
+    "meaning": "vt. 开除；驱逐出境；排出",
+    "example": "",
+    "t": 1789440134023
+  },
+  {
+    "word": "clamour",
+    "meaning": "vi. vt. 大声要求，愤怒疾呼 / n. 嘈杂声，吵闹声",
+    "example": "",
+    "t": 1789440134024
+  },
+  {
+    "word": "astrology",
+    "meaning": "n. 占星术",
+    "example": "",
+    "t": 1789440134025
+  },
+  {
+    "word": "intersection",
+    "meaning": "n. 交点，道路交叉口；交叉",
+    "example": "",
+    "t": 1789440134026
+  },
+  {
+    "word": "equator",
+    "meaning": "n. 赤道",
+    "example": "",
+    "t": 1789440134027
+  },
+  {
+    "word": "flap",
+    "meaning": "vt. vi. 拍打 (翅膀)；摆动，挥动 / vi. 忧虑，激动 / n. 片状垂悬物；拍打 (声)；忧虑",
+    "example": "",
+    "t": 1789440134028
+  },
+  {
+    "word": "profit",
+    "meaning": "n. 利润，收益；益处，好处 / vi. vt. 得益 (于)，对…有益",
+    "example": "",
+    "t": 1789440134029
   },
   {
     "word": "modish",
