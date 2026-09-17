@@ -935,6 +935,8 @@ async function loadLocalFile() {
 
     setStatus('本地文件 (' + list.length + ' 词)', 'ok');
 
+    $('configPanel').style.display = 'none';   // 已能正常看词,收起配置提示
+
   } catch(e) { /* file:// 或没有该文件时忽略 */ }
 
 }
