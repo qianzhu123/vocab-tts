@@ -138,7 +138,41 @@
 
     <input id="inExample" placeholder="例句 (可选)" style="flex:1;min-width:200px">
 
- </div>
+  </div>
+
+</div>
+
+
+
+<div id="bulkPanel" class="form" style="display:none;background:#fff8e1;border-color:#ffc107">
+
+  <div style="font-size:13px;margin-bottom:6px">
+
+    <strong>📥 批量导入</strong> 每行一条,支持:
+
+    <code>word 中文意思</code>
+
+    <code>word,意思</code>
+
+    <code>word [Tab] 意思</code>
+
+    也支持直接粘贴 JSON 数组。已存在的单词会自动跳过。
+
+  </div>
+
+  <textarea id="bulkText" rows="8" placeholder="ultimately 最终,最后&#10;brass 黄铜;铜管乐器&#10;mould n. 模具,铸模" style="width:100%;padding:8px;font-size:14px;border:1px solid #ccc;border-radius:6px;font-family:inherit;resize:vertical"></textarea>
+
+  <div class="row">
+
+    <button id="bulkDo" class="success">✅ 导入</button>
+
+    <button id="bulkFile" class="sec">📄 选择文本文件</button>
+
+    <button id="bulkCancel" class="sec">取消</button>
+
+    <input type="file" id="bulkFileInput" accept=".txt,.csv,.json,text/plain" style="display:none">
+
+  </div>
 
 </div>
 
@@ -159,6 +193,8 @@
   <button id="stop" class="sec">⏹ 停止</button>
 
   <button id="refresh" class="sec">🔄 从云端拉取</button>
+
+  <button id="bulkBtn" class="sec">📥 批量导入</button>
 
   <button id="showConfig" class="sec">⚙️ 配置</button>
 
@@ -697,6 +733,214 @@ $('cfgSave').onclick = saveCfg;
 
 
 
+// ================= 批量导入 =================
+
+function parseBulk(text) {
+
+  text = (text || '').trim();
+
+  if (!text) return [];
+
+
+
+  // JSON 数组
+
+  if (text[0] === '[') {
+
+    try {
+
+      return JSON.parse(text)
+
+        .map(o => typeof o === 'string'
+
+          ? {word: o, meaning: '', example: ''}
+
+          : {word: (o.word || o.w || '').trim(),
+
+             meaning: (o.meaning || o.m || '').trim(),
+
+             example: (o.example || '').trim()})
+
+        .filter(x => x.word);
+
+    } catch(e) {
+
+      showToast('JSON 解析失败: ' + e.message, 'err');
+
+      return [];
+
+    }
+
+  }
+
+
+
+  const out = [];
+
+  text.split(/\r?\n/).forEach(line => {
+
+    line = line.trim();
+
+    if (!line) return;
+
+    // 去掉行首序号: "1." / "1、" / "1)"
+
+    line = line.replace(/^\d+\s*[.、)\]]?\s+/, '');
+
+    // 去掉 Markdown 表格竖线包裹
+
+    line = line.replace(/^\||\|$/g, '').trim();
+
+    if (!line) return;
+
+
+
+    // 跳过非英文开头的行
+
+    if (!/^[A-Za-z]/.test(line)) return;
+
+    // 以英文单词开头,其后全部作为释义(vt. / n. 等词性标记自动归入释义)
+
+    const m = line.match(/^([A-Za-z][A-Za-z\-'’]*)(.*)$/);
+
+    if (!m) return;
+
+    out.push({
+
+      word: m[1],
+
+      meaning: m[2].replace(/^[\s\t,，:：|;；]+/, '').trim(),
+
+      example: ''
+
+    });
+
+  });
+
+  return out;
+
+}
+
+
+
+function doBulk() {
+
+  const items = parseBulk($('bulkText').value);
+
+  if (!items.length) { showToast('没有解析到单词', 'err'); return; }
+
+
+
+  const have = new Set(list.map(x => String(x.word).toLowerCase()));
+
+  const fresh = [];
+
+  let skip = 0;
+
+  const base = Date.now();
+
+  items.forEach(it => {
+
+    const k = it.word.toLowerCase();
+
+    if (have.has(k)) { skip++; return; }
+
+    have.add(k);
+
+    fresh.push({word: it.word, meaning: it.meaning, example: it.example || '', t: base + fresh.length});
+
+  });
+
+
+
+  if (!fresh.length) {
+
+    showToast('全部 ' + skip + ' 词已存在,未新增', 'err');
+
+    $('bulkText').value = '';
+
+    return;
+
+  }
+
+
+
+  list = fresh.concat(list);   // 保持导入顺序在最前
+
+  $('bulkText').value = '';
+
+  $('bulkPanel').style.display = 'none';
+
+  render();
+
+  scheduleSync();
+
+  showToast('导入 ' + fresh.length + ' 词' + (skip ? ',跳过重复 ' + skip + ' 词' : ''), 'ok');
+
+}
+
+
+
+$('bulkBtn').onclick = () => {
+
+  const p = $('bulkPanel');
+
+  p.style.display = p.style.display === 'none' ? 'block' : 'none';
+
+  if (p.style.display === 'block') $('bulkText').focus();
+
+};
+
+$('bulkCancel').onclick = () => { $('bulkPanel').style.display = 'none'; $('bulkText').value = ''; };
+
+$('bulkDo').onclick = doBulk;
+
+$('bulkFile').onclick = () => $('bulkFileInput').click();
+
+$('bulkFileInput').onchange = e => {
+
+  const f = e.target.files[0];
+
+  if (!f) return;
+
+  const fr = new FileReader();
+
+  fr.onload = () => { $('bulkText').value = String(fr.result || ''); };
+
+  fr.readAsText(f, 'utf-8');
+
+  e.target.value = '';
+
+};
+
+
+
+// ================= 本地 vocab.json 兜底 =================
+
+// 未配置 GitHub 时,尝试读取同目录下的 vocab.json(需用 http 打开,file:// 会被浏览器拦截)
+
+async function loadLocalFile() {
+
+  try {
+
+    const r = await fetch('vocab.json', {cache: 'no-store'});
+
+    if (!r.ok) return;
+
+    const arr = await r.json();
+
+    if (!Array.isArray(arr) || !arr.length) return;
+
+    if (!list.length) { list = arr; saveLocal(); render(); }
+
+    setStatus('本地文件 (' + list.length + ' 词)', 'ok');
+
+  } catch(e) { /* file:// 或没有该文件时忽略 */ }
+
+}
+
+
+
 // ================= 启动 =================
 
 (async function init() {
@@ -718,6 +962,8 @@ $('cfgSave').onclick = saveCfg;
     list = JSON.parse(localStorage.getItem('vocab_tts_data_v1') || '[]');
 
     render();
+
+    await loadLocalFile();
 
   }
 
