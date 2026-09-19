@@ -178,6 +178,27 @@
 
 
 
+<div id="pdfPanel" class="form" style="display:none;background:#eef9f0;border-color:#28a745">
+
+  <div style="font-size:13px;margin-bottom:6px">
+
+    <strong>📄 拖入 PDF 直接导入</strong> 支持百词斩背单词报告（Word Meaning 两栏布局）。可一次拖入多个，自动去重。
+
+  </div>
+
+  <div id="pdfDrop" style="border:2px dashed #28a745;border-radius:8px;padding:24px;text-align:center;color:#666;cursor:pointer;font-size:14px">把 PDF 拖到这里，或点击选择文件</div>
+
+  <input type="file" id="pdfFileInput" accept="application/pdf,.pdf" multiple style="display:none">
+
+  <div id="pdfStatus" style="font-size:13px;margin-top:8px;color:#555"></div>
+
+</div>
+
+
+
+
+
+
 <div class="row">
 
   <label>语音: <select id="voice"></select></label>
@@ -196,6 +217,8 @@
 
   <button id="bulkBtn" class="sec">📥 批量导入</button>
 
+  <button id="pdfBtn" class="sec">📄 导入PDF</button>
+
   <button id="showConfig" class="sec">⚙️ 配置</button>
 
 </div>
@@ -203,6 +226,10 @@
 
 
 <div id="list" class="list"><div class="empty">加载中…</div></div>
+
+
+
+<script src="./js/pdf.min.js"></script>
 
 
 
@@ -823,13 +850,11 @@ function parseBulk(text) {
 
 
 
-function doBulk() {
+// 把解析出的单词并到 list(按小写去重,新词置顶),返回 {added, skip}
 
-  const items = parseBulk($('bulkText').value);
+function importItems(items) {
 
-  if (!items.length) { showToast('没有解析到单词', 'err'); return; }
-
-
+  if (!items || !items.length) return {added: 0, skip: 0};
 
   const have = new Set(list.map(x => String(x.word).toLowerCase()));
 
@@ -841,31 +866,45 @@ function doBulk() {
 
   items.forEach(it => {
 
-    const k = it.word.toLowerCase();
+    const w = (it.word || '').trim();
+
+    if (!w) return;
+
+    const k = w.toLowerCase();
 
     if (have.has(k)) { skip++; return; }
 
     have.add(k);
 
-    fresh.push({word: it.word, meaning: it.meaning, example: it.example || '', t: base + fresh.length});
+    fresh.push({word: w, meaning: (it.meaning || '').trim(), example: (it.example || '').trim(), t: base + fresh.length});
 
   });
 
+  if (fresh.length) list = fresh.concat(list);   // 保持导入顺序在最前
+
+  return {added: fresh.length, skip};
+
+}
 
 
-  if (!fresh.length) {
 
-    showToast('全部 ' + skip + ' 词已存在,未新增', 'err');
+function doBulk() {
+
+  const items = parseBulk($('bulkText').value);
+
+  if (!items.length) { showToast('没有解析到单词', 'err'); return; }
+
+  const r = importItems(items);
+
+  if (!r.added) {
+
+    showToast('全部 ' + r.skip + ' 词已存在,未新增', 'err');
 
     $('bulkText').value = '';
 
     return;
 
   }
-
-
-
-  list = fresh.concat(list);   // 保持导入顺序在最前
 
   $('bulkText').value = '';
 
@@ -875,7 +914,7 @@ function doBulk() {
 
   scheduleSync();
 
-  showToast('导入 ' + fresh.length + ' 词' + (skip ? ',跳过重复 ' + skip + ' 词' : ''), 'ok');
+  showToast('导入 ' + r.added + ' 词' + (r.skip ? ',跳过重复 ' + r.skip + ' 词' : ''), 'ok');
 
 }
 
@@ -912,6 +951,236 @@ $('bulkFileInput').onchange = e => {
   e.target.value = '';
 
 };
+
+
+
+// ================= 拖入 PDF 直接导入 =================
+
+if (window.pdfjsLib && pdfjsLib.GlobalWorkerOptions) pdfjsLib.GlobalWorkerOptions.workerSrc = './js/pdf.worker.min.js';
+
+
+
+// 把文本片段按 y 坐标重组为行(行内按 x 从左到右拼接)
+
+function groupByY(items) {
+
+  const rows = [];
+
+  for (const it of items) {
+
+    if (typeof it.str !== 'string' || !it.str) continue;
+
+    const y = Math.round(it.transform[5]);
+
+    let row = null;
+
+    for (const r of rows) { if (Math.abs(r.y - y) <= 2) { row = r; break; } }
+
+    if (!row) { row = {y, texts: []}; rows.push(row); }
+
+    row.texts.push({x: it.transform[4], s: it.str});
+
+  }
+
+  rows.sort((a, b) => b.y - a.y);
+
+  return rows.map(r => {
+
+    r.texts.sort((a, b) => a.x - b.x);
+
+    return r.texts.map(t => t.s).join('');
+
+  });
+
+}
+
+
+
+// 单词栏按 "N word",释义栏按 "N 释义"+续行,再用各自序号配对(不依赖行对齐)
+
+function parseColumnPair(wLines, mLines) {
+
+  const words = {};
+
+  for (const l of wLines) {
+
+    const m = l.match(/^(\d+)\s+([A-Za-z][A-Za-z\-'’ ]*)\s*$/);
+
+    if (m) words[+m[1]] = m[2].trim();
+
+  }
+
+  const meanings = {};
+
+  let cur = null;
+
+  for (const l of mLines) {
+
+    const m = l.match(/^(\d+)\s*(.*)$/);
+
+    if (m) {
+
+      cur = +m[1];
+
+      meanings[cur] = [];
+
+      if (m[2].trim()) meanings[cur].push(m[2].trim());
+
+    } else if (l && cur !== null && !/^(近|共|扫码|纸上)/.test(l)) {
+
+      meanings[cur].push(l);
+
+    }
+
+  }
+
+  const nums = Object.keys(words).map(Number).sort((a, b) => a - b);
+
+  return nums.map(n => ({word: words[n], meaning: (meanings[n] || []).join(' / ') || ''}));
+
+}
+
+
+
+async function extractPdfWords(file) {
+
+  const data = await file.arrayBuffer();
+
+  const doc = await pdfjsLib.getDocument({data}).promise;
+
+  const out = [];
+
+  for (let p = 1; p <= doc.numPages; p++) {
+
+    const page = await doc.getPage(p);
+
+    const vp = page.getViewport({scale: 1});
+
+    const tc = await page.getTextContent();
+
+    const wItems = [], mItems = [];
+
+    for (const it of tc.items) {
+
+      if (typeof it.str !== 'string' || !it.str) continue;
+
+      (it.transform[4] < vp.width / 2 ? wItems : mItems).push(it);
+
+    }
+
+    out.push(...parseColumnPair(groupByY(wItems), groupByY(mItems)));
+
+  }
+
+  return out;
+
+}
+
+
+
+async function handlePdfFiles(fileList) {
+
+  const files = Array.from(fileList || []).filter(f =>
+
+    f.type === 'application/pdf' || /\.pdf$/i.test(f.name));
+
+  if (!files.length) { showToast('请选择 PDF 文件', 'err'); return; }
+
+  if (!window.pdfjsLib) { showToast('PDF 解析库未加载,请联网后重试', 'err'); return; }
+
+
+
+  $('pdfStatus').textContent = '正在解析 ' + files.length + ' 个 PDF…';
+
+  let added = 0, skip = 0, parsed = 0;
+
+  for (const f of files) {
+
+    try {
+
+      const items = await extractPdfWords(f);
+
+      parsed += items.length;
+
+      const r = importItems(items);
+
+      added += r.added; skip += r.skip;
+
+      $('pdfStatus').textContent = '已解析 ' + f.name + '：' + items.length + ' 词（累计新增 ' + added + '）';
+
+    } catch(err) {
+
+      $('pdfStatus').textContent = '解析失败 ' + f.name + '：' + (err && err.message || err);
+
+      showToast('PDF 解析失败：' + f.name, 'err');
+
+    }
+
+  }
+
+  render();
+
+  scheduleSync();
+
+  $('pdfStatus').textContent = '完成：共解析 ' + parsed + ' 词，新增 ' + added + ' 词，跳过重复 ' + skip + ' 词。';
+
+  if (added) showToast('PDF 导入：新增 ' + added + ' 词', 'ok');
+
+}
+
+
+
+function wirePdfPanel() {
+
+  $('pdfBtn').onclick = () => {
+
+    const p = $('pdfPanel');
+
+    p.style.display = p.style.display === 'none' ? 'block' : 'none';
+
+    if (p.style.display === 'block' && !window.pdfjsLib) {
+
+      $('pdfStatus').textContent = '⚠️ PDF 解析库未加载，请确认 js/pdf.min.js 存在或联网后刷新。';
+
+    }
+
+  };
+
+  $('pdfDrop').onclick = () => $('pdfFileInput').click();
+
+  $('pdfFileInput').onchange = e => { handlePdfFiles(e.target.files); e.target.value = ''; };
+
+
+
+  const dz = $('pdfDrop');
+
+  ['dragenter', 'dragover'].forEach(ev => dz.addEventListener(ev, e => {
+
+    e.preventDefault(); e.stopPropagation();
+
+    dz.style.background = '#d6f0dc';
+
+  }));
+
+  ['dragleave', 'drop'].forEach(ev => dz.addEventListener(ev, e => {
+
+    e.preventDefault(); e.stopPropagation();
+
+    dz.style.background = '';
+
+  }));
+
+  dz.addEventListener('drop', e => {
+
+    const dt = e.dataTransfer;
+
+    if (dt && dt.files) handlePdfFiles(dt.files);
+
+  });
+
+}
+
+wirePdfPanel();
 
 
 
